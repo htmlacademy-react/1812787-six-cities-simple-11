@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 function MainEmptyScreen (): JSX.Element {
   return (
-    <>
+    <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -79,7 +79,7 @@ function MainEmptyScreen (): JSX.Element {
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 

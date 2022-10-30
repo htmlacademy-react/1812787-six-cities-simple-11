@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 function PropertyNotLoggedScreen (): JSX.Element {
   return (
-    <>
+    <div className="page">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -256,7 +256,7 @@ function PropertyNotLoggedScreen (): JSX.Element {
           </section>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 
