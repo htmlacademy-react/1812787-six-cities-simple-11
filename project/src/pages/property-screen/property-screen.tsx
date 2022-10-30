@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 function PropertyScreen (): JSX.Element {
   return (
-    <>
+    <div className="page">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -307,7 +307,7 @@ function PropertyScreen (): JSX.Element {
           </section>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 

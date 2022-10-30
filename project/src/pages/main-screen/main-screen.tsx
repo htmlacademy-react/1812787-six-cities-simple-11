@@ -7,7 +7,7 @@ type MainScreenProps = {
 
 function MainScreen({cardsCount}: MainScreenProps): JSX.Element {
   return (
-    <>
+    <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -103,7 +103,7 @@ function MainScreen({cardsCount}: MainScreenProps): JSX.Element {
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 
