@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 function NotFoundScreen(): JSX.Element {
   return (
@@ -7,9 +8,9 @@ function NotFoundScreen(): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
+              <Link to={AppRoute.Root} className="header__logo-link">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -20,7 +21,7 @@ function NotFoundScreen(): JSX.Element {
           <section className="login">
             <h1>404. Page not found</h1>
             <span style={{textDecoration: 'underline'}}>
-              <Link to="/">Back to main page</Link>
+              <Link to={AppRoute.Root}>Back to main page</Link>
             </span>
           </section>
           <section className="locations locations--login locations--current">

@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-
-const CardsCount = {
-  PlacesCount: 5,
-} as const;
+import { hotels } from './mocks/offers';
+import { comments } from './mocks/reviews';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -13,7 +11,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      cardsCount = {CardsCount.PlacesCount}
+      hotels = {hotels}
+      comments = {comments}
     />
   </React.StrictMode>,
 );
