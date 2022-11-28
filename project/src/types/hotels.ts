@@ -49,3 +49,9 @@ export type Hotels = {
 export type HotelProps = {
   hotel: Hotel;
 };
+
+export type MapProps = {
+  locations: Location[];
+  city: City;
+  selectedPoint: Location | undefined;
+};
