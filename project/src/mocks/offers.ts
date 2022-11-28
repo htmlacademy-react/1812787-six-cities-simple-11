@@ -5,9 +5,9 @@ export const hotels: Hotel[] = [
     bedrooms: 2,
     city: {
       location: {
-        latitude: 52.371807,
-        longitude: 4.896029,
-        zoom: 5,
+        latitude: 52.3740300,
+        longitude: 4.8896900,
+        zoom: 10,
       },
       name: 'Amsterdam',
     },
@@ -23,9 +23,9 @@ export const hotels: Hotel[] = [
     images: ['img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg' ],
     isPremium: false,
     location: {
-      latitude: 51.371807,
-      longitude: 4.886029,
-      zoom: 5,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 10,
     },
     maxAdults: 3,
     previewImage: 'img/apartment-02.jpg',
@@ -37,9 +37,9 @@ export const hotels: Hotel[] = [
     bedrooms: 1,
     city: {
       location: {
-        latitude: 52.371807,
-        longitude: 4.896029,
-        zoom: 5,
+        latitude: 52.3740300,
+        longitude: 4.8896900,
+        zoom: 10,
       },
       name: 'Amsterdam',
     },
@@ -55,9 +55,9 @@ export const hotels: Hotel[] = [
     images: ['img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg'],
     isPremium: true,
     location: {
-      latitude: 52.571807,
-      longitude: 4.956029,
-      zoom: 5,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
+      zoom: 10,
     },
     maxAdults: 2,
     previewImage: 'img/apartment-03.jpg',
@@ -69,9 +69,9 @@ export const hotels: Hotel[] = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 52.371807,
-        longitude: 4.896029,
-        zoom: 5,
+        latitude: 52.3740300,
+        longitude: 4.8896900,
+        zoom: 10,
       },
       name: 'Amsterdam',
     },
@@ -87,9 +87,9 @@ export const hotels: Hotel[] = [
     images: ['img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg'],
     isPremium: true,
     location: {
-      latitude: 53.371807,
-      longitude: 4.906029,
-      zoom: 5,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 10,
     },
     maxAdults: 5,
     previewImage: 'img/apartment-01.jpg',
@@ -101,9 +101,9 @@ export const hotels: Hotel[] = [
     bedrooms: 1,
     city: {
       location: {
-        latitude: 52.371807,
-        longitude: 4.896029,
-        zoom: 5,
+        latitude: 52.3740300,
+        longitude: 4.8896900,
+        zoom: 10,
       },
       name: 'Amsterdam',
     },
@@ -119,9 +119,9 @@ export const hotels: Hotel[] = [
     images: ['img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg'],
     isPremium: false,
     location: {
-      latitude: 50.371807,
-      longitude: 4.996029,
-      zoom: 5,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 10,
     },
     maxAdults: 1,
     previewImage: 'img/apartment-03.jpg',

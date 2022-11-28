@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+//import { MouseEvent } from 'react';
 import PlaceCard from '../../components/place-card/place-card';
-import type { Hotels, Hotel } from '../../types/hotels';
+import type { Hotel } from '../../types/hotels';
 
-function PlaceList({hotels}: Hotels): JSX.Element{
-  //временно отключена проверка неиспользуемой переменной
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [hoverCard, setHovered] = useState<Hotel | null>(null);
+type ListProps = {
+  hotels: Hotel[];
+  onListItemHover: (listItemID: number | null) => void;
+}
+
+function PlaceList(props: ListProps): JSX.Element{
+  const {hotels, onListItemHover} = props;
+  //const [hoverCard, setHovered] = useState<Hotel | null>(null);
+  // const listItemHoverHandler = (event: MouseEvent<HTMLElement>) => {
+  //   event.preventDefault();
+  //   onListItemHover(1);
+  // onListItemHover(event.currentTarget.innerText);
+  //};
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {
         hotels.map((hotel) => (
           <article className="cities__card place-card" key={hotel.id}
-            onMouseEnter = { () => setHovered(hotel) }
-            onMouseLeave = { () => setHovered(null) }
+            //onMouseEnter = {listItemHoverHandler}
+            onMouseEnter = { () => onListItemHover(hotel.id) }
+            onMouseLeave = { () => onListItemHover(null) }
           >
             <PlaceCard hotel = {hotel} />
           </article>

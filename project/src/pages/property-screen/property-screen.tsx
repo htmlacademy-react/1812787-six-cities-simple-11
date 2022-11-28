@@ -44,7 +44,7 @@ function PropertyScreen ({hotels}: Hotels): JSX.Element {
               {
                 hotel.images.map((image) =>
                   (
-                    <div className="property__image-wrapper" key={`${hotel.id}-${image}`}>
+                    <div className="property__image-wrapper" key={`${hotel.id}-${image}-${Math.random()}`}>
                       <img className="property__image" src={image} alt="Photo studio"/>
                     </div>
                   ))
