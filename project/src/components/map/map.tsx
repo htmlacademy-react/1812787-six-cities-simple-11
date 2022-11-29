@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { Icon, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/useMap';
@@ -18,9 +18,9 @@ const currentCustomIcon = new Icon ({
   iconAnchor: [20,40],
 });
 
-function Map ({ locations, city, selectedPoint } : MapProps): JSX.Element {
+function Map ({ locations, cityLocation, selectedPoint, mapClass } : MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, cityLocation);
 
   useEffect(() => {
     if (map) {
@@ -42,7 +42,7 @@ function Map ({ locations, city, selectedPoint } : MapProps): JSX.Element {
   }, [map, locations, selectedPoint]);
 
   return(
-    <section className="cities__map map"
+    <section className = {`${mapClass}`}
       ref = {mapRef}
     >
     </section>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, MAP_CLASS } from '../../const';
 import PlaceList from '../../components/place-list/place-list';
 import MainEmptyScreen from '../main-empty-screen/main-empty-screen';
 import Map from '../../components/map/map';
@@ -16,14 +16,10 @@ function MainScreen({ hotels }: Hotels): JSX.Element {
       setSelectedHotel(undefined);
     }
   };
-  // const onListItemHover = (listItemID: number) => {
-  //   const currentHotel = hotels.find((hotel) => hotel.id === listItemID);
-  //   setSelectedHotel(currentHotel);
-  // };
 
   if (hotels.length > 0) {
     const points = hotels.map((hotel) => hotel.location);
-    const city = hotels[0].city;
+    const cityLocation = hotels[0].city.location;
     return (
       <div className="page page--gray page--main">
         <header className="header">
@@ -119,8 +115,9 @@ function MainScreen({ hotels }: Hotels): JSX.Element {
               <div className="cities__right-section">
                 <Map
                   locations = { points }
-                  city = { city }
+                  cityLocation = { cityLocation }
                   selectedPoint = {selectedHotel?.location}
+                  mapClass = {MAP_CLASS.cities}
                 />
               </div>
             </div>

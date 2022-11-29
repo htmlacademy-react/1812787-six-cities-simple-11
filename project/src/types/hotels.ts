@@ -34,7 +34,7 @@ export type Hotel = {
   type: string;
 };
 
-export type Comment = {
+export type Review = {
   comment: string;
   date: string;
   id: number;
@@ -52,6 +52,7 @@ export type HotelProps = {
 
 export type MapProps = {
   locations: Location[];
-  city: City;
+  cityLocation: Location;
   selectedPoint: Location | undefined;
+  mapClass: string;
 };
