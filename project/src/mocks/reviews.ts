@@ -1,6 +1,6 @@
-import { Comment } from '../types/hotels';
+import { Review } from '../types/hotels';
 
-export const comments: Comment[] = [
+export const reviews: Review[] = [
   {
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
     date: 'April 2019',
@@ -10,7 +10,7 @@ export const comments: Comment[] = [
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 333,
       isPro: true,
-      name: 'Angelina',
+      name: 'Angela',
     },
   },
   {
@@ -29,7 +29,7 @@ export const comments: Comment[] = [
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
     date: 'May 2021',
     id: 3000,
-    rating: 3.8,
+    rating: 2.8,
     user: {
       avatarUrl: 'img/avatar-max.jpg',
       id: 222,
@@ -46,7 +46,7 @@ export const comments: Comment[] = [
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 333,
       isPro: false,
-      name: 'Angelina',
+      name: 'Angela',
     },
   }
 ];

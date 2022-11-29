@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { hotels } from './mocks/offers';
-import { comments } from './mocks/reviews';
+import { reviews } from './mocks/reviews';
+import { nearbyHotels } from './mocks/nearby-offers';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -11,8 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      hotels = {hotels}
-      comments = {comments}
+      hotels = { hotels }
+      reviews = { reviews }
+      nearbyHotels = { nearbyHotels }
     />
   </React.StrictMode>,
 );

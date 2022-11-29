@@ -1,6 +1,6 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import type { Hotel, Comment } from '../../types/hotels';
+import type { Hotel, Review } from '../../types/hotels';
 
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
@@ -9,10 +9,11 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 
 type AppScreenProps = {
   hotels: Hotel[];
-  comments: Comment[];
+  reviews: Review[];
+  nearbyHotels: Hotel[];
 }
 
-function App({hotels, comments}: AppScreenProps): JSX.Element {
+function App({hotels, reviews, nearbyHotels}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -33,6 +34,8 @@ function App({hotels, comments}: AppScreenProps): JSX.Element {
           element = {
             <PropertyScreen
               hotels = { hotels }
+              reviews = { reviews }
+              nearbyHotels = { nearbyHotels }
             />
           }
         />
