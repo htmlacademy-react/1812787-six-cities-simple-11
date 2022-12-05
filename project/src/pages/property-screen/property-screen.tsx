@@ -155,7 +155,7 @@ function PropertyScreen (props: PropertyProps): JSX.Element {
           </div>
           <Map
             locations = { nearbyPoints }
-            cityLocation = { hotel.location }
+            city = { hotel.city }
             selectedPoint = { hotel.location }
             mapClass = {MAP_CLASS.property}
           />

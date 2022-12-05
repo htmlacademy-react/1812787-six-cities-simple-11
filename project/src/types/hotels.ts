@@ -52,7 +52,7 @@ export type HotelProps = {
 
 export type MapProps = {
   locations: Location[];
-  cityLocation: Location;
+  city: City;
   selectedPoint: Location | undefined;
   mapClass: string;
 };

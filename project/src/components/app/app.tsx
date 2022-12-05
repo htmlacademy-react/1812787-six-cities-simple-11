@@ -20,9 +20,7 @@ function App({hotels, reviews, nearbyHotels}: AppScreenProps): JSX.Element {
         <Route
           path = {AppRoute.Root}
           element = {
-            <MainScreen
-              hotels = { hotels }
-            />
+            <MainScreen/>
           }
         />
         <Route
