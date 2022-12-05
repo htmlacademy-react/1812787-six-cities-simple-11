@@ -15,3 +15,12 @@ export const MAP_CLASS = {
   property: 'property__map map',
 };
 
+export const CITIES = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+];
+

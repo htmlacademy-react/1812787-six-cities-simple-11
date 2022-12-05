@@ -5,11 +5,11 @@ export const hotels: Hotel[] = [
     bedrooms: 2,
     city: {
       location: {
-        latitude: 52.3740300,
-        longitude: 4.8896900,
+        latitude: 48.8534100,
+        longitude: 2.3488000,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: 'Paris',
     },
     description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
     goods: ['Wi-Fi', 'Heating', 'Kitchen', 'Fridge', 'Washing machine', 'Coffee machine', 'Dishwasher'],
@@ -23,8 +23,8 @@ export const hotels: Hotel[] = [
     images: ['img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg' ],
     isPremium: false,
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.85309666406198,
+      latitude: 48.8554100,
+      longitude: 2.3488000,
       zoom: 10,
     },
     maxAdults: 3,
@@ -37,11 +37,11 @@ export const hotels: Hotel[] = [
     bedrooms: 1,
     city: {
       location: {
-        latitude: 52.3740300,
-        longitude: 4.8896900,
+        latitude: 48.8534100,
+        longitude: 2.3488000,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: 'Paris',
     },
     description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam.',
     goods: ['Wi-Fi','Towels', 'Cabel TV'],
@@ -55,8 +55,8 @@ export const hotels: Hotel[] = [
     images: ['img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg'],
     isPremium: true,
     location: {
-      latitude: 52.3609553943508,
-      longitude: 4.85309666406198,
+      latitude: 48.8934100,
+      longitude: 2.3588000,
       zoom: 10,
     },
     maxAdults: 2,

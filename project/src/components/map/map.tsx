@@ -18,9 +18,9 @@ const currentCustomIcon = new Icon ({
   iconAnchor: [20,40],
 });
 
-function Map ({ locations, cityLocation, selectedPoint, mapClass } : MapProps): JSX.Element {
+function Map ({ locations, city, selectedPoint, mapClass } : MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, cityLocation);
+  const map = useMap(mapRef, city);
 
   useEffect(() => {
     if (map) {
@@ -39,7 +39,7 @@ function Map ({ locations, cityLocation, selectedPoint, mapClass } : MapProps): 
           .addTo(map);
       });
     }
-  }, [map, locations, selectedPoint]);
+  }, [map, locations, selectedPoint, city]);
 
   return(
     <section className = {`${mapClass}`}
