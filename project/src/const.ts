@@ -24,3 +24,9 @@ export const CITIES = [
   'Dusseldorf',
 ];
 
+export enum SORTING_OPTIONS {
+  Popular = 'Popular',
+  PriceLowToHigh = 'Price: low to high',
+  PriceHighToLow = 'Price: high to low',
+  TopRatedFirst = 'Top rated first',
+}
