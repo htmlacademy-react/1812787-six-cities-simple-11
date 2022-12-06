@@ -9,3 +9,7 @@ export const getOffers = createAction<{
   offers: Hotel[];
 }
 >('offer/getOffers');
+
+export const changeSorting = createAction<{
+  sorting: string;
+}>('offer/sortOffers');

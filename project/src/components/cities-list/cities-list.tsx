@@ -1,8 +1,10 @@
+import { SORTING_OPTIONS } from '../../const';
 import { useAppDispatch, useAppSelector} from '../../hooks/index';
-import { changeCity } from '../../store/action';
+import { changeCity, changeSorting } from '../../store/action';
 
 type CitiesProps = {
   cities: string[];
+
 }
 
 function CitiesList ({cities}: CitiesProps): JSX.Element {
@@ -21,6 +23,7 @@ function CitiesList ({cities}: CitiesProps): JSX.Element {
                   onClick = {(evt) => {
                     evt.preventDefault();
                     dispatch(changeCity({ city: city }));
+                    dispatch(changeSorting({ sorting: SORTING_OPTIONS.Popular}));
                   }}
                 >
                   <span>{city}</span>
