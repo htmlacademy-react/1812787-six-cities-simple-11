@@ -7,18 +7,19 @@ import NotFoundScreen from '../not-found-screen/not-found-screen';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import NearbyPlaceList from '../../components/nearby-place-list/nearby-place-list';
+import { useAppSelector } from '../../hooks';
 
 type PropertyProps = {
-  hotels: Hotel[];
   reviews: Review[];
   nearbyHotels : Hotel[];
 }
 
 function PropertyScreen (props: PropertyProps): JSX.Element {
-  const {hotels, reviews, nearbyHotels} = props;
+  const {reviews, nearbyHotels} = props;
   const nearbyPoints = nearbyHotels.map((nearbyHotel) => nearbyHotel.location);
   const params = useParams();
-  const hotel = hotels.find((offer) => String(offer.id) === params.id);
+  const offers = useAppSelector((state) => state.offers);
+  const hotel = offers.find((offer) => String(offer.id) === params.id);
   return hotel ? (
     <div className="page">
       <header className="header">

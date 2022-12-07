@@ -1,19 +1,27 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import type { Hotel, Review } from '../../types/hotels';
-
+import { useAppSelector } from '../../hooks';
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import PropertyScreen from '../../pages/property-screen/property-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 type AppScreenProps = {
-  hotels: Hotel[];
   reviews: Review[];
   nearbyHotels: Hotel[];
 }
 
-function App({hotels, reviews, nearbyHotels}: AppScreenProps): JSX.Element {
+function App({reviews, nearbyHotels}: AppScreenProps): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+
+  if (isOffersDataLoading) {
+    return(
+      <LoadingScreen/>
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -31,7 +39,6 @@ function App({hotels, reviews, nearbyHotels}: AppScreenProps): JSX.Element {
           path={AppRoute.Room}
           element = {
             <PropertyScreen
-              hotels = { hotels }
               reviews = { reviews }
               nearbyHotels = { nearbyHotels }
             />
