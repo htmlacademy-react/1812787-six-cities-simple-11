@@ -1,11 +1,19 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { CITIES, SORTING_OPTIONS } from '../const';
-import { changeCity, getOffers, changeSorting } from './action';
-import { hotels } from '../mocks/offers';
+import { changeCity, getOffers, changeSorting, setOffersDataLoadingStatus } from './action';
+import { Hotel } from '../types/hotels';
 
-const initialState = {
+type InitialState = {
+  city: string;
+  offers: Hotel[];
+  isOffersDataLoading: boolean;
+  sorting: string;
+}
+
+const initialState: InitialState = {
   city: CITIES[0],
-  offers: hotels,
+  offers: [],
+  isOffersDataLoading: false,
   sorting: SORTING_OPTIONS.Popular as string,
 };
 
@@ -18,6 +26,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(getOffers, (state, action) => {
       const { offers } = action.payload;
       state.offers = offers;
+    })
+    .addCase(setOffersDataLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
     })
     .addCase(changeSorting, (state, action) => {
       const { sorting } = action.payload;
