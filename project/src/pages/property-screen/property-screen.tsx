@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import {Link, useParams} from 'react-router-dom';
-import {AppRoute, MAP_CLASS} from '../../const';
+import {useParams} from 'react-router-dom';
+import {MAP_CLASS, AuthorizationStatus} from '../../const';
 import type { Hotel, Review } from '../../types/hotels';
 import AddCommentForm from '../../components/add-comment-form/add-comment-form';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
@@ -8,6 +8,7 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import NearbyPlaceList from '../../components/nearby-place-list/nearby-place-list';
 import { useAppSelector } from '../../hooks';
+import Header from '../../components/header/header';
 
 type PropertyProps = {
   reviews: Review[];
@@ -20,35 +21,11 @@ function PropertyScreen (props: PropertyProps): JSX.Element {
   const params = useParams();
   const offers = useAppSelector((state) => state.offers);
   const hotel = offers.find((offer) => String(offer.id) === params.id);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
   return hotel ? (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Link to={AppRoute.Root} className="header__logo-link">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </Link>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <div className="header__nav-profile">
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </div>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#/">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+      <Header/>
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -150,7 +127,11 @@ function PropertyScreen (props: PropertyProps): JSX.Element {
                 <ReviewsList
                   reviews = { reviews }
                 />
-                <AddCommentForm/>
+                {isAuthorized ? (
+                  <AddCommentForm/>
+                ) : (
+                  ''
+                )}
               </section>
             </div>
           </div>

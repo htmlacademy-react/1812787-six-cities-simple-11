@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import type { Hotel, Review } from '../../types/hotels';
 import { useAppSelector } from '../../hooks';
@@ -7,6 +7,8 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import PropertyScreen from '../../pages/property-screen/property-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 type AppScreenProps = {
   reviews: Review[];
@@ -23,7 +25,7 @@ function App({reviews, nearbyHotels}: AppScreenProps): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path = {AppRoute.Root}
@@ -49,7 +51,7 @@ function App({reviews, nearbyHotels}: AppScreenProps): JSX.Element {
           element = {<NotFoundScreen/>}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
