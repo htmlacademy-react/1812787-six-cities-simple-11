@@ -1,8 +1,8 @@
 import { AxiosInstance, AxiosResponse } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getOffers, requireAuthorization, setOffersDataLoadingStatus, setUserEmail, redirectToRoute } from './action';
+import { getOffers, requireAuthorization, setOffersDataLoadingStatus, setUserEmail, redirectToRoute, getProperty, getReviews, getNearbyOffers } from './action';
 import { AppDispatch, State } from '../types/state.js';
-import { Hotel } from '../types/hotels';
+import { Hotel, Review, ReviewData } from '../types/hotels';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
@@ -21,6 +21,30 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     dispatch(getOffers({
       offers: data
     }));
+  },
+);
+
+export const fetchPropertyAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchProperty',
+  async (id, {dispatch, extra: api}) => {
+    // dispatch(setOffersDataLoadingStatus(true));
+    const propertyData = await api.get<Hotel>(`${APIRoute.Hotels}/${id}`);
+    const nearbyData = await api.get<Hotel[]>(`${APIRoute.Hotels}/${id}/nearby`);
+    const comments = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
+    dispatch(getProperty ({
+      property: propertyData.data
+    }));
+    dispatch(getNearbyOffers({
+      nearbyOffers: nearbyData.data
+    }));
+    dispatch(getReviews({
+      reviews: comments.data
+    }));
+    // dispatch(setOffersDataLoadingStatus(false));
   },
 );
 
@@ -69,4 +93,22 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     dispatch(setUserEmail(null));
   },
+);
+
+export const postReview = createAsyncThunk<void, ReviewData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/postReview',
+  async({ hotelId, comment, rating }, { dispatch, extra: api }) => {
+    await api.post<Review>(`${APIRoute.Reviews}/${hotelId}`, {
+      comment,
+      rating
+    });
+    const comments = await api.get<Review[]>(`${APIRoute.Reviews}/${hotelId}`);
+    dispatch(getReviews({
+      reviews: comments.data
+    }));
+  }
 );

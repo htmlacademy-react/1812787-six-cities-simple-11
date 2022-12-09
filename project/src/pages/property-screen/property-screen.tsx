@@ -1,28 +1,36 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import {useParams} from 'react-router-dom';
 import {MAP_CLASS, AuthorizationStatus} from '../../const';
-import type { Hotel, Review } from '../../types/hotels';
 import AddCommentForm from '../../components/add-comment-form/add-comment-form';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import NearbyPlaceList from '../../components/nearby-place-list/nearby-place-list';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import Header from '../../components/header/header';
+import { useEffect } from 'react';
+import {fetchPropertyAction} from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
 
-type PropertyProps = {
-  reviews: Review[];
-  nearbyHotels : Hotel[];
-}
-
-function PropertyScreen (props: PropertyProps): JSX.Element {
-  const {reviews, nearbyHotels} = props;
-  const nearbyPoints = nearbyHotels.map((nearbyHotel) => nearbyHotel.location);
-  const params = useParams();
-  const offers = useAppSelector((state) => state.offers);
-  const hotel = offers.find((offer) => String(offer.id) === params.id);
+function PropertyScreen (): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+  const isDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const hotel = useAppSelector((state) => state.property);
+  const reviews = useAppSelector((state) => state.reviews);
+  const nearbyHotels = useAppSelector((state) => state.nearbyOffers);
+  const nearbyPoints = nearbyHotels.map((nearbyHotel) => nearbyHotel.location);
+
+  useEffect(() => {
+    dispatch(fetchPropertyAction(String(id)));
+  }, [dispatch, id]);
+
+  if (isDataLoading) {
+    return <LoadingScreen/>;
+  }
+
   return hotel ? (
     <div className="page">
       <Header/>
@@ -128,7 +136,9 @@ function PropertyScreen (props: PropertyProps): JSX.Element {
                   reviews = { reviews }
                 />
                 {isAuthorized ? (
-                  <AddCommentForm/>
+                  <AddCommentForm
+                    hotelId = {hotel.id}
+                  />
                 ) : (
                   ''
                 )}

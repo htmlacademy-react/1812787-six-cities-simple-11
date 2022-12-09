@@ -42,6 +42,12 @@ export type Review = {
   user: User;
 };
 
+export type ReviewData = {
+  comment: string;
+  rating: number;
+  hotelId: number;
+};
+
 export type Hotels = {
   hotels: Hotel[];
 }
