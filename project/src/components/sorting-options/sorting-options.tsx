@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { SORTING_OPTIONS } from '../../const';
 import { changeSorting } from '../../store/action';
@@ -40,4 +40,7 @@ function SortingOptions ({sorting}: SortingOptionsProps): JSX.Element {
     </form>
   );}
 
-export default SortingOptions;
+export default memo(
+  SortingOptions,
+  (prevProps, nextProps) => prevProps.sorting === nextProps.sorting
+);
