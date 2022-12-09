@@ -33,6 +33,7 @@ export enum SORTING_OPTIONS {
 
 export enum APIRoute {
   Hotels = '/hotels',
+  Reviews = '/comments',
   Login = '/login',
   Logout = '/logout',
 }

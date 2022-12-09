@@ -1,11 +1,14 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { CITIES, SORTING_OPTIONS, AuthorizationStatus } from '../const';
-import { changeCity, getOffers, changeSorting, setOffersDataLoadingStatus, requireAuthorization, setUserEmail } from './action';
-import { Hotel } from '../types/hotels';
+import { changeCity, getOffers, getProperty, getReviews, getNearbyOffers, changeSorting, setOffersDataLoadingStatus, requireAuthorization, setUserEmail } from './action';
+import { Hotel, Review } from '../types/hotels';
 
 type InitialState = {
   city: string;
   offers: Hotel[];
+  property: Hotel | null;
+  reviews: Review[];
+  nearbyOffers: Hotel[];
   isOffersDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   userEmail: string | null;
@@ -15,6 +18,9 @@ type InitialState = {
 const initialState: InitialState = {
   city: CITIES[0],
   offers: [],
+  property: null,
+  reviews: [],
+  nearbyOffers: [],
   isOffersDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   userEmail: null,
@@ -30,6 +36,18 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(getOffers, (state, action) => {
       const { offers } = action.payload;
       state.offers = offers;
+    })
+    .addCase(getProperty, (state, action) => {
+      const { property } = action.payload;
+      state.property = property;
+    })
+    .addCase(getReviews, (state, action) => {
+      const { reviews } = action.payload;
+      state.reviews = reviews;
+    })
+    .addCase(getNearbyOffers, (state, action) => {
+      const { nearbyOffers } = action.payload;
+      state.nearbyOffers = nearbyOffers;
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;

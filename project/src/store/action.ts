@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { Hotel } from '../types/hotels';
+import { Hotel, Review } from '../types/hotels';
 import { AppRoute, AuthorizationStatus } from '../const';
 
 export const changeCity = createAction<{
@@ -10,6 +10,21 @@ export const getOffers = createAction<{
   offers: Hotel[];
 }
 >('offer/getOffers');
+
+export const getProperty = createAction<{
+  property: Hotel;
+}
+>('offer/getProperty');
+
+export const getReviews = createAction<{
+  reviews: Review[];
+}
+>('offer/getReviews');
+
+export const getNearbyOffers = createAction<{
+  nearbyOffers: Hotel[];
+}
+>('offer/getNearbyOffers');
 
 export const setOffersDataLoadingStatus = createAction<boolean
 >('data/setOffersDataLoadingStatus');
