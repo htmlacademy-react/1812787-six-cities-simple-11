@@ -1,10 +1,10 @@
 import { SORTING_OPTIONS } from '../../const';
 import { useAppDispatch, useAppSelector} from '../../hooks/index';
 import { changeCity, changeSorting } from '../../store/action';
+import { memo } from 'react';
 
 type CitiesProps = {
   cities: string[];
-
 }
 
 function CitiesList ({cities}: CitiesProps): JSX.Element {
@@ -37,4 +37,4 @@ function CitiesList ({cities}: CitiesProps): JSX.Element {
   );
 }
 
-export default CitiesList;
+export default memo(CitiesList);

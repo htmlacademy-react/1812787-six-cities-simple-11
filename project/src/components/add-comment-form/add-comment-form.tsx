@@ -73,9 +73,10 @@ function AddCommentForm ({hotelId}: AddCommentProps): JSX.Element {
           className="reviews__submit form__submit button"
           type="submit"
           disabled={
-            userReview.rating > 0 &&
+            isSending ||
+            (userReview.rating > 0 &&
             userReview.review.length >= REVIEW_MIN_LENGTH &&
-            userReview.review.length <= REVIEW_MAX_LENGTH ?
+            userReview.review.length <= REVIEW_MAX_LENGTH) ?
               undefined : true
           }
           onClick={(evt) => {

@@ -2,6 +2,7 @@
 import type { HotelProps } from '../../types/hotels';
 import { Link } from 'react-router-dom';
 import {AppRoute} from '../../const';
+import { memo } from 'react';
 
 
 function PlaceCard( { hotel }: HotelProps): JSX.Element {
@@ -41,5 +42,8 @@ function PlaceCard( { hotel }: HotelProps): JSX.Element {
   );
 }
 
-export default PlaceCard;
-
+export default memo(
+  PlaceCard,
+  (prevProps, nextProps) =>
+    JSON.stringify(prevProps.hotel) === JSON.stringify(nextProps.hotel)
+);

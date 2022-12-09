@@ -1,5 +1,6 @@
 import PlaceCard from '../../components/place-card/place-card';
 import type { Hotel } from '../../types/hotels';
+import { memo } from 'react';
 
 type ListProps = {
   hotels: Hotel[];
@@ -25,4 +26,8 @@ function PlaceList(props: ListProps): JSX.Element{
   );
 }
 
-export default PlaceList;
+export default memo(
+  PlaceList,
+  (prevProps, nextProps) =>
+    JSON.stringify(prevProps.hotels) === JSON.stringify(nextProps.hotels)
+);
