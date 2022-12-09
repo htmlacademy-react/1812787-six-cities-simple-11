@@ -37,6 +37,7 @@ export type Hotel = {
 export type Review = {
   comment: string;
   date: string;
+  dateTyped: Date;
   id: number;
   rating: number;
   user: User;
