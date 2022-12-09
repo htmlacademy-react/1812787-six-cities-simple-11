@@ -1,11 +1,14 @@
 import { FormEvent, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { useAppDispatch } from '../../hooks';
+import { Link, Navigate } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus, PASSWORD_VALIDATION_ERROR } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
+import { toast } from 'react-toastify';
 
 function LoginScreen(): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
@@ -19,12 +22,23 @@ function LoginScreen(): JSX.Element {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
-        login: loginRef.current.value,
-        password: passwordRef.current.value,
-      });
+      const password = passwordRef.current.value;
+
+      if(!password.match(/\d/g) || !password.match(/[a-zA-Z]/g)) {
+        toast.error(PASSWORD_VALIDATION_ERROR);
+      }
+      else {
+        onSubmit({
+          login: loginRef.current.value,
+          password: passwordRef.current.value,
+        });
+      }
     }
   };
+
+  if (isAuthorized) {
+    return <Navigate to={AppRoute.Root} />;
+  }
 
   return (
     <div className="page page--gray page--login">

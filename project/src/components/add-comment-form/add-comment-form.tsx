@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, MouseEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { postReview } from '../../store/api-actions';
+import { REVIEW_MIN_LENGTH, REVIEW_MAX_LENGTH } from '../../const';
 
 const RATINGS = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
@@ -71,7 +72,12 @@ function AddCommentForm ({hotelId}: AddCommentProps): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={userReview.rating > 0 && userReview.review.length >= 50 && userReview.review.length <= 300 ? undefined : true}
+          disabled={
+            userReview.rating > 0 &&
+            userReview.review.length >= REVIEW_MIN_LENGTH &&
+            userReview.review.length <= REVIEW_MAX_LENGTH ?
+              undefined : true
+          }
           onClick={(evt) => {
             handlePostReview(evt);
           }}

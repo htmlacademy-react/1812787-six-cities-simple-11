@@ -34,7 +34,7 @@ export const fetchPropertyAction = createAsyncThunk<void, string, {
     // dispatch(setOffersDataLoadingStatus(true));
     const propertyData = await api.get<Hotel>(`${APIRoute.Hotels}/${id}`);
     const nearbyData = await api.get<Hotel[]>(`${APIRoute.Hotels}/${id}/nearby`);
-    const comments = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
+    const commentsData = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
     dispatch(getProperty ({
       property: propertyData.data
     }));
@@ -42,7 +42,7 @@ export const fetchPropertyAction = createAsyncThunk<void, string, {
       nearbyOffers: nearbyData.data
     }));
     dispatch(getReviews({
-      reviews: comments.data
+      reviews: commentsData.data
     }));
     // dispatch(setOffersDataLoadingStatus(false));
   },
