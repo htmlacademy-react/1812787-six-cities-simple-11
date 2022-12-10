@@ -16,7 +16,7 @@ function ReviewsList ( props: Reviews): JSX.Element {
   ).slice(0, REVIEWS_MAX_COUNT);
   return (
     <React.Fragment>
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviewsToShow.length }</span></h2>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviews.length }</span></h2>
       <ul className="reviews__list">
         {
           reviewsToShow.map((review) => (

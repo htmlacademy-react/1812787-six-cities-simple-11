@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import {useParams} from 'react-router-dom';
-import {MAP_CLASS, AuthorizationStatus} from '../../const';
+import {MAP_CLASS, AuthorizationStatus, MAX_PROPERTY_IMAGES_COUNT} from '../../const';
 import AddCommentForm from '../../components/add-comment-form/add-comment-form';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import ReviewsList from '../../components/reviews-list/reviews-list';
@@ -11,6 +11,7 @@ import Header from '../../components/header/header';
 import { useEffect } from 'react';
 import {fetchPropertyAction} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
+import { NEARBY_OFFERS_COUNT } from '..//../const';
 
 function PropertyScreen (): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -20,8 +21,12 @@ function PropertyScreen (): JSX.Element {
   const isDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const hotel = useAppSelector((state) => state.property);
   const reviews = useAppSelector((state) => state.reviews);
-  const nearbyHotels = useAppSelector((state) => state.nearbyOffers);
+  const nearbyHotels = useAppSelector((state) => state.nearbyOffers).slice(0, NEARBY_OFFERS_COUNT);
   const nearbyPoints = nearbyHotels.map((nearbyHotel) => nearbyHotel.location);
+  const selectedPoint = hotel?.location;
+  if (selectedPoint !== undefined) {
+    nearbyPoints.push(selectedPoint);
+  }
 
   useEffect(() => {
     dispatch(fetchPropertyAction(String(id)));
@@ -39,7 +44,7 @@ function PropertyScreen (): JSX.Element {
           <div className="property__gallery-container container">
             <div className="property__gallery">
               {
-                hotel.images.map((image) =>
+                hotel.images.slice(0, MAX_PROPERTY_IMAGES_COUNT).map((image) =>
                   (
                     <div className="property__image-wrapper" key={`${hotel.id}-${image}-${Math.random()}`}>
                       <img className="property__image" src={image} alt="Photo studio"/>
@@ -148,7 +153,7 @@ function PropertyScreen (): JSX.Element {
           <Map
             locations = { nearbyPoints }
             city = { hotel.city }
-            selectedPoint = { hotel.location }
+            selectedPoint = { selectedPoint }
             mapClass = {MAP_CLASS.property}
           />
         </section>
