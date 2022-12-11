@@ -3,11 +3,11 @@ import type { HotelProps } from '../../types/hotels';
 import { Link } from 'react-router-dom';
 import {AppRoute} from '../../const';
 import { memo } from 'react';
+import { countRatingPercent } from '../../utils/rating';
 
 
 function PlaceCard( { hotel }: HotelProps): JSX.Element {
   const { previewImage, price, title, type, rating, isPremium, id } = hotel;
-  const ratingPercent = (Math.round(rating) / 5) * 100;
   return (
     <>
       {isPremium ?
@@ -29,7 +29,7 @@ function PlaceCard( { hotel }: HotelProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${ratingPercent.toString()}%` }}></span>
+            <span style={{ width: countRatingPercent(rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
