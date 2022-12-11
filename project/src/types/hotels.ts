@@ -49,10 +49,6 @@ export type ReviewData = {
   hotelId: number;
 };
 
-export type Hotels = {
-  hotels: Hotel[];
-}
-
 export type HotelProps = {
   hotel: Hotel;
 };

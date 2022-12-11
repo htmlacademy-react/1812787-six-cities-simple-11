@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import {fetchPropertyAction} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { NEARBY_OFFERS_COUNT } from '..//../const';
+import { countRatingPercent } from '../../utils/rating';
 
 function PropertyScreen (): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -66,7 +67,7 @@ function PropertyScreen (): JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${((Math.round(hotel.rating) / 5) * 100).toString()}%`}}></span>
+                  <span style={{width: countRatingPercent(hotel.rating)}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{hotel.rating}</span>
